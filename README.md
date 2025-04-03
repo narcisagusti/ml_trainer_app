@@ -21,7 +21,7 @@ The goal is to provide a simple, user-friendly tool for quick ML model explorati
 The application follows a structured procedure, leveraging several key Python libraries:
 
 1.  **Frontend & Control Flow (Streamlit):**
-    *   The user interface is built entirely using Streamlit widgets (`st.sidebar`, `st.radio`, `st.selectbox`, `st.multiselect`, `st.slider`, `st.form`, `st.button`, `st.dataframe`, `st.pyplot`, etc.).
+    *   The user interface is built entirely using Streamlit widgets (`st.selectbox`,  `st.button`, `st.dataframe`, `st.pyplot`...).
     *   Streamlit's **Session State** (`st.session_state`) is used extensively to store user selections, loaded data, the trained model, and results, ensuring persistence across user interactions.
     *   **Forms** (`st.form`) group configuration widgets in the sidebar. Model training is only triggered when the "Fit Model" button inside the form is clicked, preventing unnecessary reruns.
     *   **Caching** (`@st.cache_data`) is used for data loading functions (`load_seaborn_dataset`, `load_uploaded_file`) to improve performance by avoiding redundant data loading.
@@ -38,11 +38,11 @@ The application follows a structured procedure, leveraging several key Python li
         *   Categorical features are imputed (missing values filled with the most frequent value using `SimpleImputer`) and then converted into numerical format using `OneHotEncoder`.
         *   Target variables for classification tasks are encoded using `LabelEncoder` if they are not already numeric.
     *   **Modeling:**
-        *   Based on the detected task type, appropriate models (e.g., `LinearRegression`, `RandomForestRegressor` for Regression; `LogisticRegression`, `RandomForestClassifier` for Classification) are presented to the user.
+        *   Based on the detected task type, appropriate models (`LinearRegression`, `RandomForestRegressor` for Regression; `LogisticRegression`, `RandomForestClassifier` for Classification) are presented to the user.
         *   The selected Scikit-learn model is instantiated with user-defined hyperparameters.
     *   **Pipeline:** The preprocessing steps (`ColumnTransformer`) and the chosen model are chained together into a single Scikit-learn `Pipeline`. This ensures that the same preprocessing steps applied during training are automatically applied during prediction and evaluation, preventing data leakage and simplifying the workflow.
     *   **Training & Prediction:** The `pipeline.fit(X_train, y_train)` method trains the entire sequence. `pipeline.predict()` and `pipeline.predict_proba()` are used on the test set.
-    *   **Evaluation:** Scikit-learn's `metrics` module is used to calculate performance scores (MSE, R², Accuracy, Classification Report, Confusion Matrix, ROC/AUC).
+    *   **Evaluation:** Scikit-learn's `metrics` module is used to calculate performance scores (MSE, Accuracy, Confusion Matrix, ROC, etc).
     *   **Multiclass ROC:** For classification, the code handles both binary and multiclass ROC curve generation using the One-vs-Rest (OvR) strategy via `label_binarize` and iterative plotting.
 
 4.  **Visualization (Matplotlib & Seaborn):**
