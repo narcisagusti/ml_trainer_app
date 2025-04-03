@@ -59,18 +59,18 @@ The application follows a structured procedure, leveraging several key Python li
 
 This application was developed iteratively based on a set of requirements for an interactive ML trainer:
 
-1.  Core Functionality: The initial focus was on setting up the Streamlit interface, loading data (Seaborn/CSV), basic feature/target selection, and implementing at least one simple model (e.g., Linear Regression).
-2.  Adding Features: Multiple models (Random Forest), hyperparameter tuning options, and basic performance metrics were added.
-3.  Improving UX: Streamlit Forms (`st.form`) were implemented to prevent the model from retraining on every widget change, requiring an explicit "Fit Model" button press. Session State (`st.session_state`) was used to maintain the application's state and results. Caching (`st.cache_data`) was added for data loading.
-4.  Enhancing Evaluation: Advanced visualizations were incorporated: confusion matrix, ROC curve, feature importance plots. This involved handling specifics like extracting feature names after transformation and calculating probabilities.
-5.  Error Handling & Refinement: Through testing and feedback (like the errors encountered during our interaction), several issues were identified and fixed:
+1.  CORE FUNCTIONALITY: The initial focus was on setting up the Streamlit interface, loading data (Seaborn/CSV), basic feature/target selection, and implementing at least one simple model (e.g., Linear Regression).
+2.  ADDING FEATURES: Multiple models (Random Forest), hyperparameter tuning options, and basic performance metrics were added.
+3.  IMPROVING UX: Streamlit Forms (`st.form`) were implemented to prevent the model from retraining on every widget change, requiring an explicit "Fit Model" button press. Session State (`st.session_state`) was used to maintain the application's state and results. Caching (`st.cache_data`) was added for data loading.
+4.  ENHANCING EVALUATION: Advanced visualizations were incorporated: confusion matrix, ROC curve, feature importance plots. This involved handling specifics like extracting feature names after transformation and calculating probabilities.
+5.  ERROR HANDLING: Through testing and feedback (like the errors encountered during our interaction), several issues were identified and fixed:
     *   Correctly determining classification vs. regression tasks.
     *   Handling multiclass ROC curve plotting (implementing OvR).
     *   Resolving index mismatch errors after dropping NaNs by ensuring proper index resets.
     *   Addressing variable scope issues (`NameError` for `submitted`).
     *   Refining the user interface flow (e.g., removing placeholder options, ensuring default selections).
-6.  Advanced Features: Custom dataset upload and model export (`joblib`) were added to fulfill higher-level requirements.
-7.  Code Structure: Helper functions were created for clarity and reusability (e.g., `load_data`, `determine_task_type`). Standard libraries were prioritized.
+6.  ADVANCED FEATURE: Custom dataset upload and model export (`joblib`) were added to fulfill higher-level requirements.
+7.  CODE STRUCTURE: Helper functions were created for clarity and reusability (e.g., `load_data`, `determine_task_type`). Standard libraries were prioritized.
 
 The final code represents a refined version that addresses the initial requirements and incorporates fixes and improvements based on testing and identified errors.
 
