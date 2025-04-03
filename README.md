@@ -20,17 +20,17 @@ The goal is to provide a simple, user-friendly tool for quick ML model explorati
 
 The application follows a structured procedure, leveraging several key Python libraries:
 
-1.  **Frontend & Control Flow (Streamlit):**
+1.  Frontend & Control Flow (Streamlit):
     *   The user interface is built entirely using Streamlit widgets (`st.selectbox`,  `st.button`, `st.dataframe`, `st.pyplot`...).
     *   Streamlit's **Session State** (`st.session_state`) is used extensively to store user selections, loaded data, the trained model, and results, ensuring persistence across user interactions.
     *   **Forms** (`st.form`) group configuration widgets in the sidebar. Model training is only triggered when the "Fit Model" button inside the form is clicked, preventing unnecessary reruns.
     *   **Caching** (`@st.cache_data`) is used for data loading functions (`load_seaborn_dataset`, `load_uploaded_file`) to improve performance by avoiding redundant data loading.
 
-2.  **Data Handling (Pandas & Seaborn):**
+2.  Data Handling (Pandas & Seaborn):
     *   `Seaborn` is used to load standard example datasets.
     *   `Pandas` is used for loading uploaded CSVs (`pd.read_csv`) and for all internal data manipulation (DataFrame creation, column selection, handling NaNs, checking dtypes).
 
-3.  **Machine Learning Workflow (Scikit-learn):**
+3.  Machine Learning Workflow (Scikit-learn):
     *   **Task Identification:** The code attempts to automatically determine if the task is 'Regression' or 'Classification' based on the selected target variable's data type and number of unique values.
     *   **Preprocessing:**
         *   A `ColumnTransformer` is used to apply different preprocessing steps to numerical and categorical features separately.
@@ -45,13 +45,13 @@ The application follows a structured procedure, leveraging several key Python li
     *   **Evaluation:** Scikit-learn's `metrics` module is used to calculate performance scores (MSE, Accuracy, Confusion Matrix, ROC, etc).
     *   **Multiclass ROC:** For classification, the code handles both binary and multiclass ROC curve generation using the One-vs-Rest (OvR) strategy via `label_binarize` and iterative plotting.
 
-4.  **Visualization (Matplotlib & Seaborn):**
+4.  Visualization (Matplotlib & Seaborn):
     *   `Matplotlib` serves as the base plotting library.
     *   `Seaborn` is used for some plots like histograms (`sns.histplot`) and heatmaps (`sns.heatmap` for confusion matrix).
     *   Specific plots (Residuals, Confusion Matrix, ROC Curve, Feature Importance) are generated based on the task type and model results.
     *   The generated plots are displayed in the Streamlit app using `st.pyplot()`.
 
-5.  **Model Persistence (Joblib):**
+5.  Model Persistence (Joblib):
     *   The entire trained Scikit-learn `Pipeline` object (which includes the fitted preprocessor and model) along with the `LabelEncoder` (if used) is saved into a binary file using `joblib.dump`.
     *   This file is provided to the user for download via `st.download_button`, allowing them to load and reuse the exact trained pipeline later.
 
@@ -73,3 +73,4 @@ This application was developed iteratively based on a set of requirements for an
 7.  Code Structure: Helper functions were created for clarity and reusability (e.g., `load_data`, `determine_task_type`). Standard libraries were prioritized.
 
 The final code represents a refined version that addresses the initial requirements and incorporates fixes and improvements based on testing and identified errors.
+
